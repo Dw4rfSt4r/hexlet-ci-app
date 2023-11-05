@@ -1,1 +1,20 @@
+# Name of workflow
+name: Hexlet CI
 
+# Trigger the workflow on push or pull request
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+
+    # The type of machine to run the job on
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - run: make setup
+      - run: make start
+      - run: make test
+      - run: make lint
