@@ -15,7 +15,7 @@ jobs:
       # Устанавливаем Node.js
       - uses: actions/setup-node@v3
       # Ставим зависимости
-      - run: install build
+      - run: make setup
       - run: make start
       # Запускаем линтер
       - run: make test
