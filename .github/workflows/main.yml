@@ -1,26 +1,28 @@
-# Name of workflow
-name: Hexlet CI
+name: CI Workflow
 
-# Trigger the workflow on push or pull request
 on:
-  - push
+  push:
+    branches:
+      - main  # Здесь укажите имя вашей основной ветки
 
 jobs:
-  build: # имя взято для примера
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # Клонируем репозиторий
-      - uses: actions/checkout@v3
-      # Устанавливаем Node.js
-      - uses: actions/setup-node@v3
-      # Ставим зависимости
-      - run: make setup
-      - run: make start
-      # Запускаем линтер
-      - run: make test
-      # Запускаем тесты
-      # у шагов может быть имя, иногда это помогает отладке
-      # имя выводится на Github при просмотре сборки
-      - name: run lint
+    - name: Checkout code
+      uses: actions/checkout@v2
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18  # Версия Node.js, которую вы используете
+
+    - name: Setup Project
+      run: make setup  # Запуск сетапа проекта из вашего Makefile
+
+    - name: Run Tests
+      run: make test  # Запуск тестов из вашего Makefile
+
+    - name: Run Linter
+      run: make lint  # Запуск линтера из вашего Makefile
