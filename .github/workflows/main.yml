@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
+      - run: make install
       - run: make setup
       - run: make start
       - run: make test
